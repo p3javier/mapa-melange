@@ -2,14 +2,13 @@ import React from "react";
 
 //import "./App.css";
 
-import Map from "./components/container/Map/Map";
+import Map from "./components/container/Map/Map.jsx";
 
 import NavBar from "./components/container/NavBar/NavBar";
 
 import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
-import { sizing } from "@material-ui/system";
+import Paper from "@material-ui/core/Paper";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -39,8 +38,11 @@ export default function App() {
         <Grid item xs={12}>
           <NavBar />
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={9}>
           <Map />
+        </Grid>
+        <Grid item xs={3}>
+          <Paper className={classes.paper}>xs=3</Paper>
         </Grid>
       </Grid>
     </div>

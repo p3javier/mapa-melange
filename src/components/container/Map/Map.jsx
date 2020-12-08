@@ -1,13 +1,11 @@
+/* eslint-disable no-undef */
 import React, { useState } from "react";
-
-import {
-  MapContainer,
-  TileLayer,
-  Marker,
-  Popup,
-  useMapEvents,
-} from "react-leaflet";
 import "./Map.css";
+/** 
+import { TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
+
+
+//import MapboxGlLayer from "@mongodb-js/react-mapbox-gl-leaflet";
 
 function LocationMarker() {
   const [position, setPosition] = useState(null);
@@ -28,23 +26,29 @@ function LocationMarker() {
     </Marker>
   );
 }
-
+*/
 function Map() {
-  let coords;
+  /** let coords;
   if (localStorage.getItem("coords")) {
     coords = JSON.parse(localStorage.getItem("coords") || "null");
   } else {
     coords = { lat: 51.505, lng: -0.09 };
   }
+  */
   return (
-    <MapContainer center={coords} zoom={13} scrollWheelZoom={true} id="mymap">
-      <TileLayer
+    <>
+      <div id="map"></div>
+    </>
+  );
+}
+
+export default Map;
+/** 
+ *  <MapContainer center={coords} zoom={13} scrollWheelZoom={true} id="mymap">
+<TileLayer
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <LocationMarker />
     </MapContainer>
-  );
-}
-
-export default Map;
+*/

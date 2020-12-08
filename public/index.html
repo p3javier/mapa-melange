@@ -33,22 +33,52 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
     />
-
+    <!--
     <link
       rel="stylesheet"
       href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
       integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
       crossorigin=""
-    />
+    /> -->
     <!-- Leaflet.js CSS styles-->
 
-    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <!-- Make sure you put this AFTER Leaflet's CSS 
     <script
       src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
       integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
       crossorigin=""
     ></script>
-    <!-- Leaflet.js script -->
+     Leaflet.js script -->
+
+    <!-- MapTiler Dark Mode Scripts-->
+    <meta
+      name="viewport"
+      content="initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.js"
+      crossorigin=""
+    ></script>
+    <script
+      src="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.js"
+      crossorigin=""
+    ></script>
+    <script
+      src="https://cdn.maptiler.com/mapbox-gl-leaflet/latest/leaflet-mapbox-gl.js"
+      crossorigin=""
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.0.3/leaflet.css"
+      crossorigin=""
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.maptiler.com/mapbox-gl-js/v1.5.1/mapbox-gl.css"
+      crossorigin=""
+    />
+
+    <!-- MapTiler Dark Mode Scripts END-->
 
     <title>React App</title>
   </head>
@@ -65,5 +95,16 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+      setTimeout(function () {
+        var map = L.map("map").setView([51.11473, 17.01508], 12);
+        var gl = L.mapboxGL({
+          attribution:
+            '\u003ca href="https://www.maptiler.com/copyright/" target="_blank"\u003e\u0026copy; MapTiler\u003c/a\u003e \u003ca href="https://www.openstreetmap.org/copyright" target="_blank"\u003e\u0026copy; OpenStreetMap contributors\u003c/a\u003e',
+          style:
+            "https://api.maptiler.com/maps/dd449ba3-984a-40cb-919e-b79dea0f8afb/style.json?key=xbTwXYC2n1rQa1564G4k",
+        }).addTo(map);
+      }, 300);
+    </script>
   </body>
 </html>

@@ -16,6 +16,8 @@ import MapboxGLLayer from "../../presentational/MapBoxGLLayer/MapBoxGLLayer";
 
 import BikeIcon from "../../Utils/Icons/BikeIcon";
 
+import CityBikeLayer from "../../Utils/Layers/CityBikLayer/CityBikLayer.tsx";
+
 function LocationMarker() {
   const [position, setPosition] = useState(null);
   const map = useMapEvents({
@@ -30,9 +32,11 @@ function LocationMarker() {
   });
 
   return position === null ? null : (
-    <Marker position={position} icon={BikeIcon}>
-      <Popup>You are here</Popup>
-    </Marker>
+    <div>
+      <Marker position={position} icon={BikeIcon}>
+        <Popup>You are here</Popup>
+      </Marker>
+    </div>
   );
 }
 
@@ -53,6 +57,8 @@ function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <LocationMarker />
+        <CityBikeLayer />
+        {/**window.performance.now is used for increased precision and reducing the likelihood of a repeated id */}
       </MapContainer>
     );
   }

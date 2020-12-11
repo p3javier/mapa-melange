@@ -22,8 +22,6 @@ const svg = `data:image/svg+xml;utf8,
 const BikeIcon = new L.Icon({
   iconUrl: svg,
   iconRetinaUrl: svg,
-  iconAnchor: null,
-  popupAnchor: null,
   shadowUrl: null,
   shadowSize: null,
   shadowAnchor: null,

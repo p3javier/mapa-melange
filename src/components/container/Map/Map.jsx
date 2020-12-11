@@ -1,11 +1,20 @@
-/* eslint-disable no-undef */
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import "./Map.css";
-/** 
-import { TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 
+import { selectLayer } from "../../../redux/reducers/layerReducer";
 
-//import MapboxGlLayer from "@mongodb-js/react-mapbox-gl-leaflet";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  useMapEvents,
+} from "react-leaflet";
+
+import MapboxGLLayer from "../../presentational/MapBoxGLLayer/MapBoxGLLayer";
+
+import BikeIcon from "../../Utils/Icons/BikeIcon";
 
 function LocationMarker() {
   const [position, setPosition] = useState(null);
@@ -21,34 +30,37 @@ function LocationMarker() {
   });
 
   return position === null ? null : (
-    <Marker position={position}>
+    <Marker position={position} icon={BikeIcon}>
       <Popup>You are here</Popup>
     </Marker>
   );
 }
-*/
+
 function Map() {
-  /** let coords;
+  const layer = useSelector(selectLayer);
+  let coords;
   if (localStorage.getItem("coords")) {
     coords = JSON.parse(localStorage.getItem("coords") || "null");
   } else {
     coords = { lat: 51.505, lng: -0.09 };
   }
-  */
-  return (
-    <>
-      <div id="map"></div>
-    </>
-  );
+
+  if (layer === "light") {
+    return (
+      <MapContainer center={coords} zoom={13} scrollWheelZoom={true} id="mymap">
+        <TileLayer
+          attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <LocationMarker />
+      </MapContainer>
+    );
+  }
+  if (layer === "dark") {
+    return <MapboxGLLayer />;
+  } else {
+    return <div>ERROR!</div>;
+  }
 }
 
 export default Map;
-/** 
- *  <MapContainer center={coords} zoom={13} scrollWheelZoom={true} id="mymap">
-<TileLayer
-        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <LocationMarker />
-    </MapContainer>
-*/

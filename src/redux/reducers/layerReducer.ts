@@ -22,3 +22,6 @@ export const lightDarkModeSlice = createSlice({
 export const { light, dark } = lightDarkModeSlice.actions;
 
 export default lightDarkModeSlice.reducer;
+
+export const selectLayer = (state: { layer: { value: any } }) =>
+  state.layer.value;

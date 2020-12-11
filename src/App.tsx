@@ -6,9 +6,23 @@ import Map from "./components/container/Map/Map.jsx";
 
 import NavBar from "./components/container/NavBar/NavBar";
 
-import { makeStyles, createStyles, Theme } from "@material-ui/core/styles";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+import {
+  makeStyles,
+  createStyles,
+  Theme,
+  createMuiTheme,
+  ThemeProvider,
+} from "@material-ui/core/styles";
+
+import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
+
+import ControlPanel from "./components/container/ControlPanel/ControlPanel";
+
+import { useSelector } from "react-redux";
+import { selectLayer } from "./redux/reducers/layerReducer";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -32,19 +46,32 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function App() {
   const classes = useStyles();
 
+  const layer = useSelector(selectLayer);
+
+  const theme = createMuiTheme({
+    palette: {
+      type: layer === "light" ? "light" : "dark",
+    },
+  });
+
   return (
-    <div className={classes.root}>
-      <Grid container spacing={0} className={classes.grid}>
-        <Grid item xs={12}>
-          <NavBar />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <div className={classes.root}>
+        <Grid container spacing={0} className={classes.grid}>
+          <Grid item xs={12}>
+            <NavBar />
+          </Grid>
+          <Grid item xs={9}>
+            <Map />
+          </Grid>
+          <Grid item xs={3}>
+            <Paper className={classes.paper}>
+              <ControlPanel />
+            </Paper>
+          </Grid>
         </Grid>
-        <Grid item xs={9}>
-          <Map />
-        </Grid>
-        <Grid item xs={3}>
-          <Paper className={classes.paper}>xs=3</Paper>
-        </Grid>
-      </Grid>
-    </div>
+      </div>
+    </ThemeProvider>
   );
 }

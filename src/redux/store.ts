@@ -7,5 +7,7 @@ const store = configureStore({
     layer: lightDarkModeSlice,
   },
 });
-
+/**
+ * You can only write "mutating" logic in Redux Toolkit's createSlice and createReducer because they use Immer inside! If you write mutating logic in reducers without Immer, it will mutate the state and cause bugs!
+ */
 export default store;

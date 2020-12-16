@@ -30,7 +30,7 @@ function LocationMarker() {
       map.flyTo(e.latlng, map.getZoom());
     },
   });
-
+  console.log("CENTER", map.getCenter());
   return position === null ? null : (
     <div>
       <Marker position={position} icon={BikeIcon}>
@@ -70,3 +70,7 @@ function Map() {
 }
 
 export default Map;
+
+//"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+
+//SATELITE MAP "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"

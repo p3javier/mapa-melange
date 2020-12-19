@@ -1,48 +1,85 @@
-import React, { useState } from "react";
-import { Marker, Popup, useMapEvent, MapContainer } from "react-leaflet";
+import React, { useEffect, useState } from "react";
+import { Marker, Popup } from "react-leaflet";
 
 import BikeIcon from "../../Icons/BikeIcon";
 
 import networksFinder from "./networkFinder";
-/** 
-async function losNetworks(coords: number[], aper: number[]) {
-  return await networksFinder(coords, aper);
-}
-*/
-function StationMarker() {
-  //const [center, setCenter] = useState({ coords: [0, 0], loading: true });
-  const map = useMapEvent("click", () => {});
-  const centerJSON = map.getCenter();
-  const centerCoords = [centerJSON.lat, centerJSON.lng];
-  //setCenter({ coords: centerCoords, loading: false });
-  //if (!center.loading) {}
 
-  networksFinder(centerCoords, [0.1, 0.2]).then((areaNetworks) =>
-    console.log("THIS IS THE RESPONSE", areaNetworks)
-  );
+import stations from "./stationsFinder";
 
-  return <div></div>;
+interface INetwork {
+  company: string[];
+  href: string;
+  id: string;
+  location: {
+    city: string;
+    country: string;
+    latitude: number;
+    longitude: number;
+  };
+  name: string;
 }
 
-class CityBikLayerDetail extends React.Component {
-  constructor(props: {} | Readonly<{}>) {
-    super(props);
-    this.state = {
-      networks: [],
-      loading: true,
-    };
-  }
+interface IStation {
+  empty_slots: number;
+  extra: {
+    installDate: string;
+    installed: boolean;
+    locked: boolean;
+    name: string;
+    removalDate: string;
+    temperature: boolean;
+    terminalName: string;
+    uid: number;
+  };
+  free_bikes: number;
+  id: string;
+  latitude: number;
+  longitude: number;
+  name: string;
+  timestamp: string;
+}
 
-  async componentDidMount() {}
-  render() {
-    return (
-      <div>
-        <MapContainer center={{ lat: 51.505, lng: -0.09 }} zoom={13}>
-          <StationMarker />
-        </MapContainer>
-      </div>
+//@ts-ignore
+export default function CityBikLayerDetail(centerJSON) {
+  const [networks, setNetworks] = useState<INetwork[]>([]);
+  //const map = useMapEvent("moveend", () => {}); //change "click" to "moveend"
+  const [stationsState, setStationsState] = useState<IStation[]>([]);
+
+  useEffect(() => {
+    const centerCoords = [centerJSON.lat, centerJSON.lng];
+    //setCenter({ coords: centerCoords, loading: false });
+    //if (!center.loading) {}
+    console.log(centerCoords);
+    networksFinder(centerCoords, [0.1, 0.2]).then((areaNetworks) => {
+      //console.log("THIS IS THE RESPONSE", areaNetworks);
+      //@ts-ignore
+      setNetworks(areaNetworks);
+    });
+
+    console.log("NETWORKS", networks);
+    const stationsList = networks.map((network: INetwork) =>
+      stations(network.id)
     );
-  }
-}
+    //@ts-ignore
+    setStationsState(stationsList);
+  }, [centerJSON.lat, centerJSON.lng, networks]);
 
-export default CityBikLayerDetail;
+  return (
+    <div>
+      {stationsState.map((station) => {
+        const location: { lat: number; lng: number } = {
+          //@ts-ignore
+          lat: station.latitude,
+          //@ts-ignore
+          lng: station.longitude,
+        };
+        return (
+          <Marker position={location} icon={BikeIcon}>
+            <Popup>{JSON.stringify(station)}</Popup>
+          </Marker>
+        );
+      })}
+    </div>
+  );
+}

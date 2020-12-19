@@ -18,6 +18,9 @@ import BikeIcon from "../../Utils/Icons/BikeIcon";
 
 import CityBikeLayer from "../../Utils/Layers/CityBikLayer/CityBikLayer.tsx";
 
+//This is the layer that gives you the stations of a nearby network when you are at a zoom of 13 or less
+import CityBikeLayerDetail from "../../Utils/Layers/CityBikLayerDetail/CityBikLayerDetail";
+
 function LocationMarker() {
   const [position, setPosition] = useState(null);
   const map = useMapEvents({
@@ -57,7 +60,9 @@ function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <LocationMarker />
-        <CityBikeLayer />
+
+        <CityBikeLayerDetail centerJSON={coords} />
+
         {/**window.performance.now is used for increased precision and reducing the likelihood of a repeated id */}
       </MapContainer>
     );

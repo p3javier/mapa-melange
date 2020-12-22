@@ -18,6 +18,9 @@ import BikeIcon from "../../Utils/Icons/BikeIcon";
 
 import CityBikeLayer from "../../Utils/Layers/CityBikLayer/CityBikLayer.tsx";
 
+//This is the layer that gives you the stations of a nearby network when you are at a zoom of 13 or less
+import CityBikeLayerDetail from "../../Utils/Layers/CityBikLayerDetail/CityBikLayerDetail";
+
 function LocationMarker() {
   const [position, setPosition] = useState(null);
   const map = useMapEvents({
@@ -30,7 +33,7 @@ function LocationMarker() {
       map.flyTo(e.latlng, map.getZoom());
     },
   });
-  console.log("CENTER", map.getCenter());
+
   return position === null ? null : (
     <div>
       <Marker position={position} icon={BikeIcon}>
@@ -57,7 +60,9 @@ function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <LocationMarker />
-        <CityBikeLayer />
+
+        <CityBikeLayerDetail centerJSON={coords} />
+
         {/**window.performance.now is used for increased precision and reducing the likelihood of a repeated id */}
       </MapContainer>
     );
@@ -70,7 +75,3 @@ function Map() {
 }
 
 export default Map;
-
-//"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-
-//SATELITE MAP "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"

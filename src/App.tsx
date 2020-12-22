@@ -24,7 +24,6 @@ import ControlPanel from "./components/container/ControlPanel/ControlPanel";
 import { useSelector } from "react-redux";
 import { selectLayer } from "./redux/reducers/layerReducer";
 
-import CityBikLayerDetail from "./components/Utils/Layers/CityBikLayerDetail/CityBikLayerDetail"; //BORRAR
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     root: {
@@ -69,7 +68,6 @@ export default function App() {
           <Grid item xs={3}>
             <Paper className={classes.paper}>
               <ControlPanel />
-              <CityBikLayerDetail />
             </Paper>
           </Grid>
         </Grid>

@@ -1,4 +1,4 @@
-import networks from "../../../../data/networks.json";
+import * as networks from "../../../../data/networks.json";
 /**
 async function networks() {
   const url = "http://api.citybik.es/v2/networks";
@@ -9,15 +9,15 @@ async function networks() {
   return data.networks;
 }
 */
-export default async function networksFinder(
+export async function networksFinder(
   center: Array<number>,
   aperture: Array<number>
 ) {
   const networksJSON = await networks.networks;
+
   const latBoundary = [center[0] - aperture[0], center[0] + aperture[0]];
   const lngBoundary = [center[1] - aperture[1], center[1] + aperture[1]];
 
-  //@ts-ignore
   const networksInTheArea = await networksJSON.filter(
     (network: {
       id: string;

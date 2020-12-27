@@ -61,7 +61,7 @@ function Map() {
         />
         <LocationMarker />
 
-        <CityBikeLayerDetail centerJSON={coords} />
+        <CityBikeLayerDetail centerJSON={{ lat: 51.505, lng: -0.09 }} />
 
         {/**window.performance.now is used for increased precision and reducing the likelihood of a repeated id */}
       </MapContainer>

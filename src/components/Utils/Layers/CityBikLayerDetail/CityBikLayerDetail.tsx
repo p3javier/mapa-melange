@@ -3,12 +3,12 @@ import { Marker, Popup, useMapEvent } from "react-leaflet";
 
 import BikeIcon from "../../Icons/BikeIcon";
 
-import networksFinder from "./networkFinder";
+import { networksFinder } from "./networkFinder";
 
-import stations from "./stationsFinder";
+import { stations } from "./stationsFinder";
 
-interface INetwork {
-  company: string[];
+type INetwork = {
+  company: string;
   href: string;
   id: string;
   location: {
@@ -18,7 +18,7 @@ interface INetwork {
     longitude: number;
   };
   name: string;
-}
+};
 
 interface IStation {
   empty_slots: number;
@@ -53,17 +53,20 @@ export default function CityBikLayerDetail() {
     const centerCoords = [centerJSON.lat, centerJSON.lng];
     console.log("THE COORDS", centerCoords);
     networksFinder(centerCoords, [0.1, 0.2]).then((areaNetworks) => {
-      console.log("THIS IS THE RESPONSE", JSON.stringify(areaNetworks));
-      //@ts-ignore
-      setNetworks(areaNetworks);
+      //Investigate why importing function in typescript add additional arguments
+      const areaNetworksString = JSON.stringify(areaNetworks);
+      const areaNetworksObj = JSON.parse(areaNetworksString);
+      setNetworks(areaNetworksObj);
     });
 
-    const stationsList = networks.map<IStation>((network) =>
-      //@ts-ignore
-      stations(network.id)
-    );
-
-    setStationsState(stationsList);
+    networks.forEach((network) => {
+      stations(network.id).then((stationsB) => {
+        const theStations = stationsB;
+        setStationsState(stationsState.concat(theStations));
+      });
+    });
+    console.log("STATE NETWORKS", networks);
+    console.log("STATE STATIONS", stationsState);
   });
   /** 
   useEffect(() => {
@@ -86,11 +89,19 @@ export default function CityBikLayerDetail() {
     setStationsState(stationsList);
   }, [networks]);
   */
-  return (
-    <div>
-      <Marker position={{ lat: 51.505, lng: -0.09 }}></Marker>
-    </div>
-  );
+  let stationMarkers = stationsState.map((station: IStation) => {
+    const location: { lat: number; lng: number } = {
+      lat: station.latitude,
+
+      lng: station.longitude,
+    };
+    return (
+      <Marker position={location} icon={BikeIcon}>
+        <Popup>{JSON.stringify(station)}</Popup>
+      </Marker>
+    );
+  });
+  return stationMarkers;
 }
 
 /**

@@ -9,11 +9,12 @@ async function networks() {
   return data.networks;
 }
 */
-export default async function networksFinder(
+export async function networksFinder(
   center: Array<number>,
   aperture: Array<number>
 ) {
   const networksJSON = await networks.networks;
+
   const latBoundary = [center[0] - aperture[0], center[0] + aperture[0]];
   const lngBoundary = [center[1] - aperture[1], center[1] + aperture[1]];
 

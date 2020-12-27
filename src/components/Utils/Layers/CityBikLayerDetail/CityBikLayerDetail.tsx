@@ -23,14 +23,17 @@ type INetwork = {
 interface IStation {
   empty_slots: number;
   extra: {
-    installDate: string;
-    installed: boolean;
-    locked: boolean;
-    name: string;
-    removalDate: string;
-    temperature: boolean;
-    terminalName: string;
-    uid: number;
+    bike_uids?: string[];
+    number?: string;
+    slots: number;
+    installDate?: string;
+    installed?: boolean;
+    locked?: boolean;
+    name?: string;
+    removalDate?: string;
+    temperature?: boolean;
+    terminalName?: string;
+    uid: string | number;
   };
   free_bikes: number;
   id: string;
@@ -44,10 +47,28 @@ export default function CityBikLayerDetail() {
   const [networks, setNetworks] = useState<INetwork[]>([]);
   //const map = useMapEvent("moveend", () => {}); //change "click" to "moveend"
   const [stationsState, setStationsState] = useState<IStation[]>([]);
-  const map = useMapEvent("moveend", (cosa) => {
+
+  const map = useMapEvent("moveend", () => {
     //setCenter({ coords: centerCoords, loading: false });
     //if (!center.loading) {}
-
+    setStationsState([
+      {
+        empty_slots: 15,
+        extra: {
+          bike_uids: ["651364"],
+          number: "15001",
+          slots: 16,
+          uid: "12497516",
+        },
+        free_bikes: 1,
+        id: "0fd1fed1de13b29139831ad2fb664b69",
+        latitude: 51.108004,
+        longitude: 17.039528,
+        name: "Plac Dominika\u0144ski (Galeria Dominika\u0144ska)",
+        timestamp: "2020-12-26T23:29:01.357000Z",
+      },
+    ]);
+    console.log("STATIONS STATE SHOULD BE EMPTY", stationsState);
     const centerJSON = map.getCenter();
 
     const centerCoords = [centerJSON.lat, centerJSON.lng];
@@ -62,7 +83,7 @@ export default function CityBikLayerDetail() {
     networks.forEach((network) => {
       stations(network.id).then((stationsB) => {
         const theStations = stationsB;
-        setStationsState(stationsState.concat(theStations));
+        setStationsState((current) => current.concat(theStations));
       });
     });
     console.log("STATE NETWORKS", networks);
@@ -101,6 +122,7 @@ export default function CityBikLayerDetail() {
       </Marker>
     );
   });
+
   return stationMarkers;
 }
 

@@ -6,7 +6,6 @@ import Map from "./components/container/Map/Map.jsx";
 
 import NavBar from "./components/container/NavBar/NavBar";
 
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 import {
   makeStyles,
   createStyles,

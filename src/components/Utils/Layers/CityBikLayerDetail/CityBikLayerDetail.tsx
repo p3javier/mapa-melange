@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Marker, Popup, useMapEvent } from "react-leaflet";
 
 import BikeIcon from "../../Icons/BikeIcon";
@@ -89,27 +89,7 @@ export default function CityBikLayerDetail() {
     console.log("STATE NETWORKS", networks);
     console.log("STATE STATIONS", stationsState);
   });
-  /** 
-  useEffect(() => {
-    //setCenter({ coords: centerCoords, loading: false });
-    //if (!center.loading) {}
-    const centerCoords = [51.505, -0.09];
-    console.log("THE COORDS", centerCoords);
-    networksFinder(centerCoords, [0.1, 0.2]).then((areaNetworks) => {
-      console.log("THIS IS THE RESPONSE", areaNetworks);
-      //@ts-ignore
-      setNetworks(areaNetworks);
-    });
 
-    console.log("NETWORKS", networks);
-    const stationsList = networks.map<IStation>((network) =>
-      //@ts-ignore
-      stations(network.id)
-    );
-
-    setStationsState(stationsList);
-  }, [networks]);
-  */
   let stationMarkers = stationsState.map((station: IStation) => {
     const location: { lat: number; lng: number } = {
       lat: station.latitude,
@@ -125,18 +105,3 @@ export default function CityBikLayerDetail() {
 
   return stationMarkers;
 }
-
-/**
- * {stationsState.map((station) => {
-        const location: { lat: number; lng: number } = {
-          lat: station.latitude,
-
-          lng: station.longitude,
-        };
-        return (
-          <Marker position={location} icon={BikeIcon}>
-            <Popup>{JSON.stringify(station)}</Popup>
-          </Marker>
-        );
-      })}
- */

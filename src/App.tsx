@@ -62,10 +62,10 @@ export default function App() {
           <Grid item xs={12}>
             <NavBar />
           </Grid>
-          <Grid item xs={9}>
+          <Grid item xs={12} sm={9}>
             <Map />
           </Grid>
-          <Grid item xs={3}>
+          <Grid item xs={12} sm={3}>
             <Paper className={classes.paper}>
               <ControlPanel />
             </Paper>

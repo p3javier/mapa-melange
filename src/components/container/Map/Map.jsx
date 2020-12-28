@@ -10,6 +10,7 @@ import {
   Marker,
   Popup,
   useMapEvents,
+  MapConsumer,
 } from "react-leaflet";
 
 import MapboxGLLayer from "../../presentational/MapBoxGLLayer/MapBoxGLLayer";
@@ -46,6 +47,7 @@ function LocationMarker() {
 function Map() {
   const layer = useSelector(selectLayer);
   let coords;
+
   if (localStorage.getItem("coords")) {
     coords = JSON.parse(localStorage.getItem("coords") || "null");
   } else {
@@ -60,8 +62,15 @@ function Map() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         <LocationMarker />
-
-        <CityBikeLayerDetail centerJSON={{ lat: 51.505, lng: -0.09 }} />
+        <MapConsumer>
+          {(map) => {
+            if (map.getZoom() <= 13) {
+              return <CityBikeLayerDetail />;
+            } else {
+              return <CityBikeLayer />;
+            }
+          }}
+        </MapConsumer>
 
         {/**window.performance.now is used for increased precision and reducing the likelihood of a repeated id */}
       </MapContainer>

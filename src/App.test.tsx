@@ -1,17 +1,25 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import App from "./App";
+import { App, theme } from "./App";
 import { Provider } from "react-redux";
 
 import store from "./redux/store";
 
+import userEvent from "@testing-library/user-event";
+
 test("it works", () => {});
 
-test("renders", () => {
-  const { debug } = render(
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
-  debug();
+describe("theme switch", () => {
+  it("describe", async () => {
+    render(
+      <Provider store={store}>
+        <App />
+      </Provider>
+    );
+
+    expect(screen.getByTestId("theme-switch")).toBeChecked();
+    userEvent.click(screen.getByTestId("theme-switch"));
+    //expect(await screen.findByTestId("theme-switch")).not.toBeChecked();
+    expect(theme.palette.type).toBe("dark");
+  });
 });

@@ -25,6 +25,7 @@ export default function ColorSwitch() {
     <>
       <Brightness4Icon />
       <Switch
+        data-testid="theme-switch"
         checked={state.checked}
         onChange={handleChange}
         color="primary"

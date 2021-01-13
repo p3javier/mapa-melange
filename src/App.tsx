@@ -22,6 +22,7 @@ import ControlPanel from "./components/container/ControlPanel/ControlPanel";
 
 import { useSelector } from "react-redux";
 import { selectLayer } from "./redux/reducers/layerReducer";
+import { DefaultTheme } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -42,12 +43,14 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 
-export default function App() {
+export var theme: any;
+
+export function App() {
   const classes = useStyles();
 
   const layer = useSelector(selectLayer);
 
-  const theme = createMuiTheme({
+  theme = createMuiTheme({
     palette: {
       type: layer === "light" ? "light" : "dark",
     },

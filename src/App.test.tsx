@@ -1,16 +1,25 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
 import { App, theme } from "./App";
 import { Provider } from "react-redux";
-
 import store from "./redux/store";
 
-import userEvent from "@testing-library/user-event";
+//import userEvent from "@testing-library/user-event";
 
-test("it works", () => {});
+import { axe, toHaveNoViolations } from "jest-axe";
+expect.extend(toHaveNoViolations);
 
+test("has no html violations", async () => {
+  const { container } = render(
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
+  const results = await axe(container);
+  expect(results).toHaveNoViolations();
+});
+/** 
 describe("theme switch", () => {
-  it("describe", async () => {
+  it("switch to dark mode", async () => {
     render(
       <Provider store={store}>
         <App />
@@ -23,3 +32,4 @@ describe("theme switch", () => {
     expect(theme.palette.type).toBe("dark");
   });
 });
+*/

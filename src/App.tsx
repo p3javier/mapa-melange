@@ -22,7 +22,7 @@ import ControlPanel from "./components/container/ControlPanel/ControlPanel";
 
 import { useSelector } from "react-redux";
 import { selectLayer } from "./redux/reducers/layerReducer";
-import { DefaultTheme } from "@material-ui/styles";
+//import { DefaultTheme } from "@material-ui/styles";
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({

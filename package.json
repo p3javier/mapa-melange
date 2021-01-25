@@ -73,6 +73,7 @@
     "eslint-plugin-cypress": "^2.11.2",
     "husky": "^4.3.7",
     "jest-axe": "^3.5.0",
+    "msw": "^0.25.0",
     "react-test-renderer": "^17.0.1",
     "redux-mock-store": "^1.5.4",
     "start-server-and-test": "^1.11.7"

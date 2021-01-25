@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import { App, theme } from "./App";
+import { render } from "@testing-library/react"; //may needs import "screen"
+import { App } from "./App"; //may needs import "theme"
 import { Provider } from "react-redux";
 import store from "./redux/store";
 
@@ -17,6 +17,7 @@ test("has no html violations", async () => {
   const results = await axe(container);
   expect(results).toHaveNoViolations();
 });
+
 /** 
 describe("theme switch", () => {
   it("switch to dark mode", async () => {

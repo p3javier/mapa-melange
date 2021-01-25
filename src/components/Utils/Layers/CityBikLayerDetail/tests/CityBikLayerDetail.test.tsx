@@ -1,9 +1,22 @@
-import { networksFinder } from "./networkFinder";
+import { networksFinder } from "../networkFinder";
 
-import { stations } from "./stationsFinder";
+import { stations } from "../stationsFinder";
+
+import * as sampleStationsResponse from "../mocks/response.json";
+
+const sampleStations = sampleStationsResponse.network.stations;
+
+describe("stationsFinder test", () => {
+  it("should return the correct response", async () => {
+    const sampleNetworkId = "wrm-wroclaw";
+    const stationsResponse = await stations(sampleNetworkId).then(
+      (returnedStations) => returnedStations
+    );
+    expect(stationsResponse).toEqual(sampleStations);
+  });
+});
 
 const sampleCoords = [51.109474, 17.033918];
-
 const sampleResponse = [
   {
     company: ["Nextbike GmbH"],
@@ -37,12 +50,5 @@ describe("CityBikeLayer tests", () => {
       (areaNetworks) => areaNetworks
     );
     expect(networks).toEqual(sampleResponse);
-  });
-  it("stationsFinder function is returning the correct stations", async () => {
-    const sampleNetworkId = "wrm-wroclaw";
-    const stationsResponse = await stations(sampleNetworkId).then(
-      (returnedStations) => returnedStations
-    );
-    console.log("STATIONS", stationsResponse);
   });
 });

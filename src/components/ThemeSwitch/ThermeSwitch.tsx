@@ -1,7 +1,7 @@
 import React from "react";
 import Switch from "@material-ui/core/Switch";
 import { useDispatch } from "react-redux";
-import { light, dark } from "../../../redux/reducers/layerReducer";
+import { light, dark } from "../../redux/reducers/layerReducer";
 
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 import Brightness7Icon from "@material-ui/icons/Brightness7";

@@ -1,5 +1,5 @@
 import React from "react";
-import ThemeSwitch from "../../presentational/ColorSwitch/ThermeSwitch";
+import ThemeSwitch from "../../components/ThemeSwitch/ThermeSwitch";
 
 export default function ControlPanel() {
   return <ThemeSwitch />;

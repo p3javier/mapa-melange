@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import "./Map.css";
 
-import { selectLayer } from "../../../redux/reducers/layerReducer";
+import { selectLayer } from "../../redux/reducers/layerReducer";
 
 import {
   MapContainer,
@@ -13,14 +13,14 @@ import {
   MapConsumer,
 } from "react-leaflet";
 
-import MapboxGLLayer from "../../presentational/MapBoxGLLayer/MapBoxGLLayer";
+import MapboxGLLayer from "./Layers/MapBoxGLLayer/MapBoxGLLayer";
 
-import BikeIcon from "../../../assets/Icons/BikeIcon";
+import BikeIcon from "../../assets/Icons/BikeIcon";
 
-import CityBikeLayer from "../../Utils/Layers/CityBikLayer/CityBikLayer.tsx";
+import CityBikeLayer from "../Map/Layers/CityBikLayer/CityBikLayer";
 
 //This is the layer that gives you the stations of a nearby network when you are at a zoom of 13 or less
-import CityBikeLayerDetail from "../../Utils/Layers/CityBikLayerDetail/CityBikLayerDetail";
+import CityBikeLayerDetail from "../Map/Layers/CityBikLayerDetail/CityBikLayerDetail";
 
 function LocationMarker() {
   const [position, setPosition] = useState(null);

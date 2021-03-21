@@ -8,7 +8,7 @@ import "@testing-library/jest-dom";
  * This is to setup a mock server to test the third party API CityBik
  */
 
-import { server } from "./components/Utils/Layers/CityBikLayerDetail/mocks/server.js";
+import { server } from "./features/Map/Layers/CityBikLayerDetail/mocks/server.js";
 // Establish API mocking before all tests.
 beforeAll(() => server.listen());
 // Reset any request handlers that we may add during the tests,

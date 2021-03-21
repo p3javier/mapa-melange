@@ -1,10 +1,8 @@
 import React from "react";
 
-//import "./App.css";
+import Map from "./features/Map/Map.jsx";
 
-import Map from "./components/container/Map/Map.jsx";
-
-import NavBar from "./components/container/NavBar/NavBar";
+import NavBar from "./features/NavBar/NavBar";
 
 import {
   makeStyles,
@@ -18,7 +16,7 @@ import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 
-import ControlPanel from "./components/container/ControlPanel/ControlPanel";
+import ControlPanel from "./features/ControlPanel/ControlPanel";
 
 import { useSelector } from "react-redux";
 import { selectLayer } from "./redux/reducers/layerReducer";

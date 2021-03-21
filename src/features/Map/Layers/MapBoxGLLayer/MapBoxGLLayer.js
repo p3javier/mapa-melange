@@ -1,7 +1,8 @@
 import React from "react";
 
 import * as L from "leaflet";
-require("mapbox-gl-leaflet");
+
+import "mapbox-gl-leaflet";
 
 class MapBoxGLLayer extends React.Component {
   componentDidMount() {

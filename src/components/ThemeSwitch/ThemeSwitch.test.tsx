@@ -4,7 +4,7 @@ import ColorSwitch from "./ThermeSwitch";
 
 import { Provider } from "react-redux";
 
-import store from "../../../redux/store";
+import store from "../../redux/store";
 
 import userEvent from "@testing-library/user-event";
 

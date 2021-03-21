@@ -1,6 +1,6 @@
-import { networksFinder } from "../networkFinder";
+import { networksFinder } from "../../../../../services/NetworkFinder/networkFinder";
 
-import { stations } from "../stationsFinder";
+import { stations } from "../../../../../services/StationsFinder/stationsFinder";
 
 import * as sampleStationsResponse from "../mocks/response.json";
 

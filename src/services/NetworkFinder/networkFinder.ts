@@ -1,4 +1,4 @@
-import * as networks from "../../../../data/networks.json";
+import * as networks from "../../data/networks.json";
 /**
 async function networks() {
   const url = "http://api.citybik.es/v2/networks";

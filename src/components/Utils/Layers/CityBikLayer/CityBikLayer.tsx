@@ -1,7 +1,7 @@
 import React from "react";
 import { Marker, Popup } from "react-leaflet";
 
-import BikeIcon from "../../Icons/BikeIcon";
+import BikeIcon from "../../../../assets/Icons/BikeIcon";
 
 class CityBikLayer extends React.Component<
   {},

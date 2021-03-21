@@ -6,7 +6,7 @@ import { light, dark } from "../../../redux/reducers/layerReducer";
 import Brightness4Icon from "@material-ui/icons/Brightness4";
 import Brightness7Icon from "@material-ui/icons/Brightness7";
 
-export default function ColorSwitch() {
+export default function ThemeSwitch() {
   const [state, setState] = React.useState({
     checked: true,
   });

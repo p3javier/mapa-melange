@@ -15,7 +15,7 @@ import {
 
 import MapboxGLLayer from "../../presentational/MapBoxGLLayer/MapBoxGLLayer";
 
-import BikeIcon from "../../Utils/Icons/BikeIcon";
+import BikeIcon from "../../../assets/Icons/BikeIcon";
 
 import CityBikeLayer from "../../Utils/Layers/CityBikLayer/CityBikLayer.tsx";
 

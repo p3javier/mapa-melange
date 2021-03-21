@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { Marker, Popup, useMapEvent } from "react-leaflet";
 
-import BikeIcon from "../../Icons/BikeIcon";
+import BikeIcon from "../../../../assets/Icons/BikeIcon";
 
-import { networksFinder } from "./networkFinder";
+import { networksFinder } from "../../../../services/NetworkFinder/networkFinder";
 
-import { stations } from "./stationsFinder";
+import { stations } from "../../../../services/StationsFinder/stationsFinder";
 
-import { INetwork } from "./NetworkValidator";
+import { INetwork } from "../../../../utils/NetworkValidator";
 
-import { IStation } from "./StationValidator";
+import { IStation } from "../../../../utils/StationValidator";
 
 export default function CityBikLayerDetail() {
   const [networks, setNetworks] = useState<INetwork[]>([]);
